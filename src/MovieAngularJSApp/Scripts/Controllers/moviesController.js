@@ -3,17 +3,55 @@
 
     angular
         .module('moviesApp')
-        .controller('moviesController', moviesController);
+        .controller('MoviesListController', MoviesListController)
+        .controller('MoviesAddController', MoviesAddController)
+        .controller('MoviesEditController', MoviesEditController)
+        .controller('MoviesDeleteController', MoviesDeleteController);
 
-    moviesController.$inject = ['Movies']; 
+    /* Movies List Controller  */
+    MoviesListController.$inject = ['Movie'];
 
-    function moviesController(Movies) {
-        /* jshint validthis:true */
+    function MoviesListController(Movie) {
         var vm = this;
-        vm.movies = Movies.query();
+        vm.movies = Movie.query();
+    }
 
-        activate();
+    /* Movies Create Controller */
+    MoviesAddController.$inject = ['$location', 'Movie'];
 
-        function activate() { }
+    function MoviesAddController($location, Movie) {
+        var vm = this;
+        vm.movie = new Movie();
+        vm.add = function () {
+            vm.movie.$save(function () {
+                $location.path('/');
+            });
+        };
+    }
+
+    /* Movies Edit Controller */
+    MoviesEditController.$inject = ['$routeParams', '$location', 'Movie'];
+
+    function MoviesEditController($routeParams, $location, Movie) {
+        var vm = this;
+        vm.movie = Movie.get({ id: $routeParams.id });
+        vm.edit = function () {
+            vm.movie.$save(function () {
+                $location.path('/');
+            });
+        };
+    }
+
+    /* Movies Delete Controller  */
+    MoviesDeleteController.$inject = ['$routeParams', '$location', 'Movie'];
+
+    function MoviesDeleteController($routeParams, $location, Movie) {
+        var vm = this;
+        vm.movie = Movie.get({ id: $routeParams.id });
+        vm.remove = function () {
+            vm.movie.$remove({ id: vm.movie.Id }, function () {
+                $location.path('/');
+            });
+        };
     }
 })();
