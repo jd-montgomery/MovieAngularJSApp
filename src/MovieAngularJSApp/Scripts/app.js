@@ -1,6 +1,6 @@
 ﻿(function () {
     'use strict';
-
+	
     config.$inject = ['$routeProvider', '$locationProvider'];
 
     angular.module('moviesApp', [

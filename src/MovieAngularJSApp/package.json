@@ -1,9 +1,13 @@
-﻿{
-    "version": "0.0.0",
-    "name": "MovieAngularJSApp",
-    "devDependencies": {
-        "grunt": "0.4.5",
-        "grunt-contrib-uglify": "0.7.0",
-        "grunt-contrib-watch": "0.6.1"
-    }
+﻿/*
+	NPM configuration file defining the Node dependencies of the project.
+*/
+{
+	"version": "0.0.0",
+	"name": "MovieAngularJSApp",
+	"devDependencies": {
+		// combine and minify JavaScript files
+		/*"grunt": "0.4.5",
+		"grunt-contrib-uglify": "0.7.0",
+		"grunt-contrib-watch": "0.6.1"*/
+	}
 }

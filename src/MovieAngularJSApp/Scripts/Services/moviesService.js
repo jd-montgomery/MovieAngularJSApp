@@ -5,7 +5,7 @@
 
     /* Movies Service */
     moviesServices.factory('Movies', ['$resource',
-    function ($resource) {
+    function Movies($resource) {
         return $resource('/api/movies/', {}, {
             query: { method: 'GET', params: {}, isArray: true }
         });
